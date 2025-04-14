@@ -1,0 +1,10 @@
+.container {
+    /* width: 100%; */
+    width: 325px;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid #7A5FFF66;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
