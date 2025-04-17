@@ -85,7 +85,7 @@
   text-align: center;
   font-size: 64px;
   font-weight: 700;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 .ideaMaintext p {
   margin: 0;
@@ -282,6 +282,7 @@ color: #888888;
 
 .goalsItem p {
 color: #000000;
+font-weight: 500;
 }
 
 @media (max-width: 768px) {
