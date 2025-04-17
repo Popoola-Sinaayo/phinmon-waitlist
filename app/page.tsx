@@ -4,6 +4,9 @@ import styles from "./page.module.css";
 import Alert from "@/components/Alert";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import CardItem from "@/components/CardItem";
+import { countries } from "@/components/utils";
+import LoadingIcons from "react-loading-icons";
 
 export default function Home() {
   const items = [
@@ -18,6 +21,43 @@ export default function Home() {
       setActive((prev) => (prev + 1) % items.length);
     }, 5000);
     return () => clearInterval(interval);
+  }, []);
+  const [activeState, setActiveState] = useState("");
+  const [email, setEmail] = useState("");
+  const [country, setCountry] = useState("");
+
+  const getIP = async () => {
+    try {
+      const response = await fetch("https://api.ipify.org/?format=json");
+      const data = await response.json();
+
+      return data.ip;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getCountryFromIp = async (ip: string) => {
+    try {
+      const response = await fetch(
+        `https://geolocation-db.com/json/b570c4c0-e375-11ef-9827-cfbfb458272c/${ip}`
+      );
+      const data = await response.json();
+      console.log(data);
+      setCountry(data.country_name);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const ip = await getIP();
+      if (ip) {
+        await getCountryFromIp(ip);
+      }
+    };
+    fetchData();
   }, []);
   return (
     <div className={styles.container}>
@@ -127,6 +167,58 @@ export default function Home() {
               Join the waitlist for Phinmon – the only app that understands your
               soft life goals and your broke days.
             </p>
+          </div>
+          <div className={styles.cardContainer}>
+            <CardItem
+              text="Yes, I’m hyped"
+              onClick={(text) => setActiveState(text)}
+              active={activeState === "Yes, I’m hyped"}
+            />
+            <CardItem
+              text="Nah, I’ll chill for now"
+              onClick={(text) => setActiveState(text)}
+              active={activeState === "Nah, I’ll chill for now"}
+            />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.label}>Email</label>
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={styles.input}
+              placeholder="Enter your email address"
+            />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.label}>Country</label>
+            <select
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              className={styles.select}
+            >
+              <option value="" disabled>
+                Select your country
+              </option>
+              {countries.map((c) => {
+                return (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className={styles.buttonContainer}>
+            <button className={styles.button}>
+              Submit
+              <LoadingIcons.TailSpin
+                width={20}
+                height={20}
+                stroke={"#FFFFFF"}
+                // style={{ marginLeft: "10px" }}
+              />
+            </button>
           </div>
         </div>
       </div>

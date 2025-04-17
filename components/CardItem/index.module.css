@@ -1,0 +1,17 @@
+.container {
+    background-color: white;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 200px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.container p {
+    font-weight: 600;
+    size: 30px;
+}

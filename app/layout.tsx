@@ -45,7 +45,9 @@ export default function RootLayout({
         <meta name="twitter:image:type" content="image/png" />
         <meta property="twitter:image:alt" content="Phinmon" />
       </head>
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className} style={{ margin: 0 }}>
+        {children}
+      </body>
     </html>
   );
 }
