@@ -305,7 +305,7 @@ export default function Home() {
               className={styles.modalImage}
             />
             <p className={styles.modalTopText}>
-              You’re in the lineup – we see you 🙌
+              You’re in the lineup. We see you 🙌
             </p>
             <p className={styles.modalText}>
               The queue’s moving… slowly. But don’t worry, we’ll hit you up when
