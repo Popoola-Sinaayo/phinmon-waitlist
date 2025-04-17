@@ -211,9 +211,7 @@ export default function Home() {
               text="Nah, I’ll chill for now"
               onClick={(text) => setActiveState(text)}
               active={activeState === "Nah, I’ll chill for now"}
-              image={
-                <Image src={"/no.svg"} alt="yes" width={80} height={80} />
-              }
+              image={<Image src={"/no.svg"} alt="yes" width={80} height={80} />}
             />
           </div>
           <div className={styles.inputContainer}>
@@ -282,6 +280,12 @@ export default function Home() {
               onClick={handleCloseModal}
             >
               <Image src={"/cancel.svg"} alt="cancel" width={50} height={50} />
+            </div>
+            <div className={styles.pContainer}>
+              <Image src={"/p-bg.svg"} alt="p" width={360} height={600} />
+            </div>
+            <div className={styles.pContainer2}>
+              <Image src={"/ellipse.svg"} alt="p" width={360} height={600} />
             </div>
           </div>
         </div>
