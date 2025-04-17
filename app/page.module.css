@@ -12,6 +12,7 @@
   /* height: 100vh; */
   background-color: #F6F8FC;
   padding-bottom: 40px;
+  position: relative;
 }
 
 .page {
@@ -180,6 +181,72 @@ color: #888888;
   justify-content: center;
 }
 
+.modalContainer {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalItemContainer {
+  background-color: #8B9FFE;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 90%;
+  max-width: 600px;
+  height: 60vh;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* height: auto;
+  max-height: 60vh; */
+}
+
+.modalButtonContainer {
+  position: absolute;
+   top: 10%;
+  right: 0;
+  transform: translateX(-50%) translateY(-50%);
+  cursor: pointer;
+}
+
+.modalTopText {
+  color: #FFFFFF;
+  font-size: 30px;
+  font-weight: 600;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+
+}
+.modalText {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFFFFF;
+ margin-top: 10px;
+  margin-bottom: 0;
+
+}
+
+.modalImage {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  margin-top: 20px;
+}
 @media (max-width: 768px) {
  .bgImage {
   display: none;
@@ -218,5 +285,13 @@ color: #888888;
 
   .ideaSubtext {
     font-size: 12px;
+  }
+
+  .modalTopText {
+    font-size: 20px;
+  }
+
+  .modalText {
+    font-size: 10px;
   }
 }

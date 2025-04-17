@@ -22,9 +22,11 @@ export default function Home() {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
-  const [activeState, setActiveState] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [activeState, setActiveState] = useState("Yes, I’m hyped");
   const [email, setEmail] = useState("");
   const [country, setCountry] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const getIP = async () => {
     try {
@@ -59,6 +61,34 @@ export default function Home() {
     };
     fetchData();
   }, []);
+
+  const saveDetails = async () => {
+    try {
+      setIsLoading(true);
+      const res = await fetch("/api/save-details", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email ?? "placeholder@test.com",
+          agree: activeState === "Yes, I’m hyped" ? "Yes" : "No",
+          country: country ?? "Moon",
+        }),
+      });
+      const data = await res.json();
+      setIsLoading(false);
+      if (data.message === "Data saved to sheet") {
+        setShowModal(true);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
+  };
+  const handleCloseModal = () => {
+    window.location.reload();
+  };
   return (
     <div className={styles.container}>
       <div className={styles.page}>
@@ -210,18 +240,46 @@ export default function Home() {
             </select>
           </div>
           <div className={styles.buttonContainer}>
-            <button className={styles.button}>
+            <button className={styles.button} onClick={saveDetails}>
               Submit
-              <LoadingIcons.TailSpin
-                width={20}
-                height={20}
-                stroke={"#FFFFFF"}
-                // style={{ marginLeft: "10px" }}
-              />
+              {isLoading && (
+                <LoadingIcons.TailSpin
+                  width={20}
+                  height={20}
+                  stroke={"#FFFFFF"}
+                  // style={{ marginLeft: "10px" }}
+                />
+              )}
             </button>
           </div>
         </div>
       </div>
+      {showModal && (
+        <div className={styles.modalContainer}>
+          <div className={styles.modalItemContainer}>
+            <Image
+              src={"/success.svg"}
+              alt="svg"
+              width={600}
+              height={462}
+              className={styles.modalImage}
+            />
+            <p className={styles.modalTopText}>
+              You’re in the lineup – we see you 🙌
+            </p>
+            <p className={styles.modalText}>
+              The queue’s moving… slowly. But don’t worry, we’ll hit you up when
+              it’s your time to shine 😎
+            </p>
+            <div
+              className={styles.modalButtonContainer}
+              onClick={handleCloseModal}
+            >
+              <Image src={"/cancel.svg"} alt="cancel" width={50} height={50} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
