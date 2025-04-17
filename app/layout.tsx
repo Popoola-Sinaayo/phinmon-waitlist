@@ -53,10 +53,10 @@ export default function RootLayout({
           type="image/svg"
           sizes="any"
         />
-        <meta property="og:image" content="/p.png" />
+        <meta property="og:image" content="/success.png" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:alt" content="Phinmon" />
-        <meta name="twitter:image" content="/p.png" />
+        <meta name="twitter:image" content="/success.png" />
         <meta name="twitter:image:type" content="image/png" />
         <meta property="twitter:image:alt" content="Phinmon" />
       </head>
