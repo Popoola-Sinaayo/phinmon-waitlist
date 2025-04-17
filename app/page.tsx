@@ -89,6 +89,10 @@ export default function Home() {
   const handleCloseModal = () => {
     window.location.reload();
   };
+  const isMobileIOS =
+    /iPhone|iPad|iPod/.test(navigator.userAgent) &&
+    /Mobile/.test(navigator.userAgent);
+
   return (
     <div className={styles.container}>
       <div className={styles.page}>
@@ -248,6 +252,7 @@ export default function Home() {
               onChange={(e) => setEmail(e.target.value)}
               className={styles.input}
               placeholder="Enter your email address"
+              style={{ ...(isMobileIOS && { fontSize: "16px" }) }}
             />
           </div>
           <div className={styles.inputContainer}>
