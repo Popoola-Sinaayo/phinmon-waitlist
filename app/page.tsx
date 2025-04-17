@@ -132,7 +132,7 @@ export default function Home() {
                 Phinmon links to your bank, peeps your alerts, and turns them
                 into vibey, personalized notifications. It’s like having a
                 money-savvy bestie that calls you out (lovingly) when you
-                overspend — but never touches your cash.
+                overspend but never touches your cash.
               </p>
             </div>
             <div className={styles.alertContainer}>
@@ -200,7 +200,7 @@ export default function Home() {
                 margin: "0",
               }}
             >
-              Phinmon Goals
+              What to Expect
             </p>
           </div>
           <div className={styles.goalsItem}>
@@ -220,8 +220,8 @@ export default function Home() {
           </div>
           <div className={styles.ideaSubtext}>
             <p>
-              Join the waitlist for Phinmon – the only app that understands your
-              soft life goals and your broke days.
+              Join the waitlist for Phinmon, the app that understands both your
+              soft life dreams and your not-so-soft bank balance.
             </p>
           </div>
           <div className={styles.cardContainer}>
