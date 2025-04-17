@@ -85,7 +85,7 @@
   text-align: center;
   font-size: 64px;
   font-weight: 700;
-  margin-top: 70px;
+  margin-top: 30px;
 }
 .ideaMaintext p {
   margin: 0;
@@ -272,6 +272,18 @@ color: #888888;
   height: auto;
 }
 
+.goalsContainer {
+  margin-top: 50px;
+}
+
+.goalsItem {
+  text-align: center;
+}
+
+.goalsItem p {
+color: #000000;
+}
+
 @media (max-width: 768px) {
  .bgImage {
   display: none;
@@ -322,5 +334,9 @@ color: #888888;
 
   .pContainer2 img {
     display: none;
+  }
+
+  .goalsItem p {
+    font-size: 12px;
   }
 }

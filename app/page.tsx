@@ -121,16 +121,18 @@ export default function Home() {
                   margin: "0",
                 }}
               >
-                Keeps you <span style={{ color: "#7A5FFF" }}>rich-ish </span>{" "}
-                while <br /> throwing{" "}
-                <span style={{ color: "#3FE0B6" }}>financial shade</span>
+                Meet <span style={{ color: "#7A5FFF" }}>Phinmon </span> <br />{" "}
+                Your Financial
+                <span style={{ color: "#3FE0B6" }}> Sidekick</span>
               </p>
             </div>
             <div className={styles.subContentContainer}>
               <p>
                 {" "}
-                The money app that lowkey roasts you when you overspend. Get in
-                line 👀
+                Phinmon links to your bank, peeps your alerts, and turns them
+                into vibey, personalized notifications. It’s like having a
+                money-savvy bestie that calls you out (lovingly) when you
+                overspend — but never touches your cash.
               </p>
             </div>
             <div className={styles.alertContainer}>
@@ -186,6 +188,30 @@ export default function Home() {
                 )}
               </AnimatePresence>
             </div>
+          </div>
+        </div>
+        <div className={styles.goalsContainer}>
+          <div className={styles.titleContainer}>
+            <p
+              style={{
+                color: "#7A5FFF",
+                fontSize: "12px",
+                fontWeight: "500",
+                margin: "0",
+              }}
+            >
+              Phinmon Goals
+            </p>
+          </div>
+          <div className={styles.goalsItem}>
+            <p>Link your bank safely with zero stress and all the vibes.</p>
+            <p>Get alerts that match your mood (and your money).</p>
+            <p>
+              Get smart about spending with advice that actually makes sense
+            </p>
+            <p>
+              Keep your money untouched because we don’t hold or move a thing.
+            </p>
           </div>
         </div>
         <div>
