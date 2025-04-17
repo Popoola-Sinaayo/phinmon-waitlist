@@ -27,6 +27,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [country, setCountry] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [isMobileIOS, setisMobileIOS] = useState(false);
 
   const getIP = async () => {
     try {
@@ -89,9 +90,13 @@ export default function Home() {
   const handleCloseModal = () => {
     window.location.reload();
   };
-  const isMobileIOS =
-    /iPhone|iPad|iPod/.test(navigator.userAgent) &&
-    /Mobile/.test(navigator.userAgent);
+
+  useEffect(() => {
+    const isMobileIOS =
+      /iPhone|iPad|iPod/.test(navigator.userAgent) &&
+      /Mobile/.test(navigator.userAgent);
+    setisMobileIOS(isMobileIOS);
+  }, []);
 
   return (
     <div className={styles.container}>
