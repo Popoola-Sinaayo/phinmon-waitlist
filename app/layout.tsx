@@ -21,6 +21,20 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Phinmon",
   description: "",
+  icons: {
+    icon: [
+      {
+        media: "(prefers-color-scheme: light)",
+        url: "/p.svg",
+        href: "/p.svg",
+      },
+      {
+        media: "(prefers-color-scheme: dark)",
+        url: "/p.svg",
+        href: "/p.svg",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

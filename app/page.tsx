@@ -203,11 +203,17 @@ export default function Home() {
               text="Yes, I’m hyped"
               onClick={(text) => setActiveState(text)}
               active={activeState === "Yes, I’m hyped"}
+              image={
+                <Image src={"/yes.svg"} alt="yes" width={80} height={80} />
+              }
             />
             <CardItem
               text="Nah, I’ll chill for now"
               onClick={(text) => setActiveState(text)}
               active={activeState === "Nah, I’ll chill for now"}
+              image={
+                <Image src={"/no.svg"} alt="yes" width={80} height={80} />
+              }
             />
           </div>
           <div className={styles.inputContainer}>
