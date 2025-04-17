@@ -181,7 +181,9 @@ color: #888888;
 }
 
 @media (max-width: 768px) {
- 
+ .bgImage {
+  display: none;
+ }
   .mainContentContainer p {
     font-size: 40px;
   }
