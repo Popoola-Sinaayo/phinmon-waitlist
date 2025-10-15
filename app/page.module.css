@@ -285,6 +285,104 @@ color: #000000;
 font-weight: 500;
 }
 
+/* Countdown Timer Styles */
+.countdownContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.countdown {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.countdownItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 20px 15px;
+  min-width: 80px;
+  box-shadow: 0 8px 32px rgba(122, 95, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.countdownNumber {
+  font-size: 32px;
+  font-weight: 700;
+  color: #7A5FFF;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.countdownLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Notify Form Styles */
+.notifyForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Social Links Styles */
+.socialContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+  gap: 20px;
+}
+
+.socialText {
+  color: #888888;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(122, 95, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.socialLink:hover {
+  background: rgba(122, 95, 255, 0.2);
+  transform: translateY(-2px);
+}
+
 @media (max-width: 768px) {
  .bgImage {
   display: none;
@@ -305,7 +403,33 @@ font-weight: 500;
     font-size: 14px;
   }
 
-  
+  /* Countdown mobile styles */
+  .countdown {
+    gap: 15px;
+  }
+
+  .countdownItem {
+    padding: 15px 10px;
+    min-width: 70px;
+  }
+
+  .countdownNumber {
+    font-size: 24px;
+  }
+
+  .countdownLabel {
+    font-size: 10px;
+  }
+
+  /* Social links mobile */
+  .socialLinks {
+    gap: 15px;
+  }
+
+  .socialLink {
+    width: 45px;
+    height: 45px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -339,5 +463,33 @@ font-weight: 500;
 
   .goalsItem p {
     font-size: 12px;
+  }
+
+  /* Countdown small mobile */
+  .countdown {
+    gap: 10px;
+  }
+
+  .countdownItem {
+    padding: 12px 8px;
+    min-width: 60px;
+  }
+
+  .countdownNumber {
+    font-size: 20px;
+  }
+
+  .countdownLabel {
+    font-size: 9px;
+  }
+
+  /* Social links small mobile */
+  .socialLink {
+    width: 40px;
+    height: 40px;
+  }
+
+  .socialText {
+    font-size: 14px;
   }
 }
