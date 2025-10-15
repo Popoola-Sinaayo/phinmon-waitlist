@@ -4,8 +4,8 @@ import styles from "./page.module.css";
 import Alert from "@/components/Alert";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import CardItem from "@/components/CardItem";
-import { countries } from "@/components/utils";
+// import CardItem from "@/components/CardItem";
+// import { countries } from "@/components/utils";
 import LoadingIcons from "react-loading-icons";
 
 export default function Home() {
