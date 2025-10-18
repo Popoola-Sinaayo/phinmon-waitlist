@@ -305,7 +305,6 @@ export default function Home() {
             </p>
           </div>
           <div className={styles.goalsItem}>
-            <p>🔐 Bank-level security with a user-friendly interface</p>
             <p>📱 Smart notifications that actually help you save money</p>
             <p>💡 AI-powered insights tailored to your spending habits</p>
             <p>🚀 A financial companion that grows with your goals</p>
