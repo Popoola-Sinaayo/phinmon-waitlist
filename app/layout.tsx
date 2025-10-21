@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 // const geistSans = Poppins({
 //   // variable: "--font-geist-sans",
@@ -74,7 +75,7 @@ export default function RootLayout({
         `}
       </Script>
       <body className={poppins.className} style={{ margin: 0 }}>
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

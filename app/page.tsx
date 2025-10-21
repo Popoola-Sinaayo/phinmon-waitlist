@@ -1,27 +1,61 @@
 "use client";
 import Image from "next/image";
 import styles from "./page.module.css";
-import Alert from "@/components/Alert";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-// import CardItem from "@/components/CardItem";
-// import { countries } from "@/components/utils";
 import LoadingIcons from "react-loading-icons";
+import ThemeToggle from "@/components/ThemeToggle";
+import { useTheme } from "@/components/ThemeProvider";
 
 export default function Home() {
-  const items = [
-    "Something amazing is brewing... ✨",
-    "Get ready for the future of finance 🚀",
-    "Your financial sidekick is almost here 💫",
-    "The wait will be worth it, we promise! 🎯",
+  const { resolvedTheme } = useTheme();
+
+  // Use resolvedTheme for any theme-specific logic if needed
+  console.log("Current theme:", resolvedTheme);
+
+  const features = [
+    {
+      icon: "🤖",
+      title: "AI That Gets You",
+      description:
+        "Your personal finance guru that actually understands your vibe and gives you insights that make sense (no boring financial jargon, we promise!)",
+    },
+    {
+      icon: "🏦",
+      title: "All Your Money, One Place",
+      description:
+        "Connect all your accounts safely and see everything in one clean dashboard. No more switching between 10 different apps!",
+    },
+    {
+      icon: "📊",
+      title: "Spending Patterns That Slap",
+      description:
+        "Discover where your money actually goes and find sneaky ways to save more. Your future self will thank you! 💸",
+    },
   ];
-  const [active, setActive] = useState(0);
+
+  const testimonials = [
+    {
+      name: "Popoola",
+      content:
+        "The potential of Phinmon's AI-powered financial insights is incredible. I can see how it could revolutionize personal finance management and help people make smarter money decisions.",
+    },
+    {
+      name: "David",
+      content:
+        "This app has the potential to be a game-changer in the fintech space. The combination of AI insights and bank integration could transform how people interact with their finances.",
+    },
+    {
+      name: "Tunmise",
+      content:
+        "Phinmon's approach to financial monitoring looks promising. The AI-driven recommendations could help users optimize their spending and investment strategies effectively.",
+    },
+  ];
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % items.length);
-    }, 5000);
-    return () => clearInterval(interval);
+    // Feature rotation effect can be added here if needed
   }, []);
+
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -133,112 +167,110 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.page}>
-        <div className={styles.headerContainer}>
-          <Image
-            src={"/bg.svg"}
-            alt=""
-            width={738}
-            height={360}
-            className={styles.bgImage}
-          />
-          <Image src={"/p.svg"} width={38} height={87} alt="Phinmon" />
-          <div className={styles.header}>
-            <div className={styles.titleContainer}>
-              <p
-                style={{
-                  color: "#7A5FFF",
-                  fontSize: "12px",
-                  fontWeight: "500",
-                  margin: "0",
-                }}
-              >
-                Coming Soon
-              </p>
+      {/* Navigation */}
+      <motion.nav
+        className={styles.navbar}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className={styles.navContent}>
+          <motion.div
+            className={styles.logo}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Image src={"/p.svg"} width={32} height={32} alt="Phinmon" />
+            <span className={styles.logoText}>Phinmon</span>
+          </motion.div>
+          <div className={styles.navLinks}>
+            <motion.a
+              href="#features"
+              className={styles.navLink}
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.2 }}
+            >
+              Features
+            </motion.a>
+            <motion.a
+              href="#testimonials"
+              className={styles.navLink}
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.2 }}
+            >
+              Reviews
+            </motion.a>
+            <motion.a
+              href="#waitlist"
+              className={styles.navLink}
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.2 }}
+            >
+              Join Waitlist
+            </motion.a>
+            <ThemeToggle />
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <motion.div
+            className={styles.heroText}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className={styles.badge}>
+              <span className={styles.badgeText}>🚀 Coming Soon</span>
             </div>
-            <div className={styles.mainContentContainer}>
-              <p
-                style={{
-                  fontWeight: "700",
-                  margin: "0",
-                }}
+            <motion.h1
+              className={styles.heroTitle}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Your AI-Powered
+              <motion.span
+                className={styles.gradientText}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
               >
-                <span style={{ color: "#7A5FFF" }}>Phinmon </span> is <br />{" "}
-                Almost
-                <span style={{ color: "#3FE0B6" }}> Here</span>
-              </p>
-            </div>
-            <div className={styles.subContentContainer}>
-              <p>
                 {" "}
-                We're crafting something extraordinary - a financial sidekick
-                that will revolutionize how you manage money. Get ready for
-                personalized insights, smart notifications, and a banking
-                experience like never before.
-              </p>
-            </div>
-            <div className={styles.alertContainer}>
-              <AnimatePresence
-                onExitComplete={() => {
-                  console.log("exit complete");
-                }}
-                mode="wait"
+                Money
+              </motion.span>
+              <br />
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 1.0 }}
               >
-                {active === 0 && (
-                  <motion.div
-                    initial={{ y: -50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 50, opacity: 0 }}
-                    transition={{ duration: 1 }}
-                    key={0}
-                  >
-                    <Alert description={items[active]} />
-                  </motion.div>
-                )}
-                {active === 1 && (
-                  <motion.div
-                    initial={{ y: -50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 50, opacity: 0 }}
-                    transition={{ duration: 1 }}
-                    key={1}
-                  >
-                    <Alert description={items[active]} />
-                  </motion.div>
-                )}
-                {active === 2 && (
-                  <motion.div
-                    initial={{ y: -50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 50, opacity: 0 }}
-                    transition={{ duration: 1 }}
-                    key={2}
-                  >
-                    <Alert description={items[active]} />
-                  </motion.div>
-                )}{" "}
-                {active === 3 && (
-                  <motion.div
-                    initial={{ y: -50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 50, opacity: 0 }}
-                    transition={{ duration: 1 }}
-                    key={3}
-                  >
-                    <Alert description={items[active]} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                Bestie
+              </motion.span>
+            </motion.h1>
+            <motion.p
+              className={styles.heroDescription}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              Connect your accounts, get AI insights that actually make sense,
+              and finally understand your money like never before. Phinmon is
+              about to make managing your finances actually fun (yes, really!
+              🎉).
+            </motion.p>
 
             {/* Countdown Timer */}
-            <div className={styles.countdownContainer}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className={styles.countdown}
-              >
+            <motion.div
+              className={styles.countdownContainer}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <p className={styles.countdownLabel}>Launching in:</p>
+              <div className={styles.countdown}>
                 <div className={styles.countdownItem}>
                   <motion.div
                     key={timeLeft.days}
@@ -249,7 +281,7 @@ export default function Home() {
                   >
                     {timeLeft.days}
                   </motion.div>
-                  <span className={styles.countdownLabel}>Days</span>
+                  <span className={styles.countdownText}>Days</span>
                 </div>
                 <div className={styles.countdownItem}>
                   <motion.div
@@ -261,7 +293,7 @@ export default function Home() {
                   >
                     {timeLeft.hours}
                   </motion.div>
-                  <span className={styles.countdownLabel}>Hours</span>
+                  <span className={styles.countdownText}>Hours</span>
                 </div>
                 <div className={styles.countdownItem}>
                   <motion.div
@@ -273,7 +305,7 @@ export default function Home() {
                   >
                     {timeLeft.minutes}
                   </motion.div>
-                  <span className={styles.countdownLabel}>Minutes</span>
+                  <span className={styles.countdownText}>Minutes</span>
                 </div>
                 <div className={styles.countdownItem}>
                   <motion.div
@@ -285,61 +317,164 @@ export default function Home() {
                   >
                     {timeLeft.seconds}
                   </motion.div>
-                  <span className={styles.countdownLabel}>Seconds</span>
+                  <span className={styles.countdownText}>Seconds</span>
                 </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.goalsContainer}>
-          <div className={styles.titleContainer}>
-            <p
-              style={{
-                color: "#7A5FFF",
-                fontSize: "12px",
-                fontWeight: "500",
-                margin: "0",
-              }}
-            >
-              What's Coming
-            </p>
-          </div>
-          <div className={styles.goalsItem}>
-            <p>📱 Smart notifications that actually help you save money</p>
-            <p>💡 AI-powered insights tailored to your spending habits</p>
-            <p>🚀 A financial companion that grows with your goals</p>
-          </div>
-        </div>
-        <div>
-          <div className={styles.ideaMaintext}>
-            <p>Be the first to know</p>
-          </div>
-          <div className={styles.ideaSubtext}>
-            <p>
-              Get notified when Phinmon launches and be among the first to
-              experience the future of personal finance.
-            </p>
-          </div>
+              </div>
+            </motion.div>
+          </motion.div>
 
           <motion.div
-            className={styles.notifyForm}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            className={styles.heroVisual}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className={styles.inputContainer}>
+            <div className={styles.dashboardPreview}>
+              <div className={styles.dashboardCard}>
+                <div className={styles.cardHeader}>
+                  <div className={styles.cardTitle}>AI Insights</div>
+                  <div className={styles.cardStatus}>Live</div>
+                </div>
+                <div className={styles.cardContent}>
+                  <div className={styles.insightItem}>
+                    <span className={styles.insightIcon}>💰</span>
+                    <span className={styles.insightText}>
+                      You could save more this month (no cap!)
+                    </span>
+                  </div>
+                  <div className={styles.insightItem}>
+                    <span className={styles.insightIcon}>🚀</span>
+                    <span className={styles.insightText}>
+                      Crypto move detected 📊
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className={styles.features}>
+        <div className={styles.featuresContent}>
+          <motion.div
+            className={styles.sectionHeader}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className={styles.sectionTitle}>Why Phinmon Hits Different</h2>
+            <p className={styles.sectionDescription}>
+              The features that&apos;ll make you actually excited about managing
+              your money
+            </p>
+          </motion.div>
+
+          <div className={styles.featuresGrid}>
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                className={styles.featureCard}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+              >
+                <div className={styles.featureIcon}>{feature.icon}</div>
+                <h3 className={styles.featureTitle}>{feature.title}</h3>
+                <p className={styles.featureDescription}>
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className={styles.testimonials}>
+        <div className={styles.testimonialsContent}>
+          <motion.div
+            className={styles.sectionHeader}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className={styles.sectionTitle}>The Hype is Real</h2>
+            <p className={styles.sectionDescription}>
+              People are already talking about how Phinmon is about to change
+              the game
+            </p>
+          </motion.div>
+
+          <div className={styles.testimonialsGrid}>
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                className={styles.testimonialCard}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className={styles.testimonialContent}>
+                  <p className={styles.testimonialText}>
+                    &ldquo;{testimonial.content}&rdquo;
+                  </p>
+                </div>
+                <div className={styles.testimonialAuthor}>
+                  <div className={styles.authorInfo}>
+                    <div className={styles.authorName}>{testimonial.name}</div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Waitlist Section */}
+      <section id="waitlist" className={styles.waitlist}>
+        <div className={styles.waitlistContent}>
+          <motion.div
+            className={styles.waitlistHeader}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className={styles.waitlistTitle}>
+              Get Early Access (It&apos;s Free!)
+            </h2>
+            <p className={styles.waitlistDescription}>
+              Join the waitlist and be among the first to experience the future
+              of personal finance. Plus, early birds get a sweet discount when
+              we launch! 🎉
+            </p>
+          </motion.div>
+
+          <motion.div
+            className={styles.waitlistForm}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div className={styles.formContainer}>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={styles.input}
+                className={styles.emailInput}
                 placeholder="Enter your email address"
                 style={{ ...(isMobileIOS && { fontSize: "16px" }) }}
               />
-            </div>
-            <div className={styles.buttonContainer}>
               <motion.button
-                className={styles.button}
+                className={styles.submitButton}
                 onClick={notifyMe}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -352,20 +487,24 @@ export default function Home() {
                     stroke={"#FFFFFF"}
                   />
                 ) : (
-                  "Notify Me"
+                  "I'm In! 🚀"
                 )}
               </motion.button>
             </div>
+            <p className={styles.formNote}>
+              🔒 Your email is safe with us. No spam, just the good stuff!
+            </p>
           </motion.div>
 
           {/* Social Links */}
           <motion.div
             className={styles.socialContainer}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
           >
-            <p className={styles.socialText}>Follow us for updates</p>
+            <p className={styles.socialText}>Follow us for the latest tea ☕</p>
             <div className={styles.socialLinks}>
               <motion.a
                 href="https://twitter.com/phinmon"
@@ -421,36 +560,54 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-      </div>
-      {showModal && (
-        <div className={styles.modalContainer}>
-          <div className={styles.modalItemContainer}>
-            <Image
-              src={"/success.svg"}
-              alt="svg"
-              width={600}
-              height={462}
-              className={styles.modalImage}
-            />
-            <p className={styles.modalTopText}>You're on the list! 🎉</p>
-            <p className={styles.modalText}>
-              We'll notify you as soon as Phinmon is ready to launch. Get ready
-              for something amazing! ✨
-            </p>
-            <div
-              className={styles.modalButtonContainer}
-              onClick={handleCloseModal}
-            >
-              <Image src={"/cancel.svg"} alt="cancel" width={50} height={50} />
-            </div>
-            <div className={styles.pContainer}>
-              <Image src={"/p-bg.svg"} alt="p" width={360} height={600} />
-            </div>
-            <div className={styles.pContainer2}>
-              <Image src={"/ellipse.svg"} alt="p" width={360} height={600} />
-            </div>
+      </section>
+
+      {/* Footer */}
+      <footer className={styles.footer}>
+        <div className={styles.footerContent}>
+          <div className={styles.footerLogo}>
+            <Image src={"/p.svg"} width={24} height={24} alt="Phinmon" />
+            <span>Phinmon</span>
           </div>
+          <p className={styles.footerText}>
+            © 2024 Phinmon. All rights reserved. Making money management
+            actually fun, one insight at a time.
+          </p>
         </div>
+      </footer>
+
+      {/* Success Modal */}
+      {showModal && (
+        <motion.div
+          className={styles.modalOverlay}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <motion.div
+            className={styles.modal}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+          >
+            <div className={styles.modalContent}>
+              <div className={styles.modalIcon}>🎉</div>
+              <h3 className={styles.modalTitle}>You&apos;re on the list!</h3>
+              <p className={styles.modalDescription}>
+                We&apos;ll notify you as soon as Phinmon is ready to launch. Get
+                ready for something amazing! ✨
+              </p>
+              <motion.button
+                className={styles.modalButton}
+                onClick={handleCloseModal}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Awesome!
+              </motion.button>
+            </div>
+          </motion.div>
+        </motion.div>
       )}
     </div>
   );
