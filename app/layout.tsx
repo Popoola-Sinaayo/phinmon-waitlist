@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 // const geistSans = Poppins({
 //   // variable: "--font-geist-sans",
@@ -62,18 +62,9 @@ export default function RootLayout({
         <meta property="twitter:image:alt" content="Phinmon" />
       </head>
       {/* Google Analytics */}
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-D7NP0PBR6M"
-        strategy="afterInteractive"
+      <GoogleAnalytics
+        trackingId={process.env.NEXT_PUBLIC_GA_TRACKING_ID || "G-D7NP0PBR6M"}
       />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-D7NP0PBR6M');
-        `}
-      </Script>
       <body className={poppins.className} style={{ margin: 0 }}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
