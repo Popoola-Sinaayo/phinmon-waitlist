@@ -21,8 +21,77 @@ const poppins = Poppins({
 // });
 
 export const metadata: Metadata = {
-  title: "Phinmon",
-  description: "",
+  title: "Phinmon - AI-Powered Personal Finance Management | Coming Soon",
+  description:
+    "Join Phinmon's waitlist for the future of personal finance. AI-powered insights, secure read-only access, and smart money management. Your money stays safe - we never touch your funds. Get early access now!",
+  keywords: [
+    "personal finance",
+    "AI financial insights",
+    "money management",
+    "fintech",
+    "financial planning",
+    "budgeting app",
+    "expense tracking",
+    "financial analytics",
+    "secure banking",
+    "read-only finance",
+    "money insights",
+    "financial dashboard",
+  ],
+  authors: [{ name: "Phinmon Team" }],
+  creator: "Phinmon",
+  publisher: "Phinmon",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL("https://phinmon.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Phinmon - AI-Powered Personal Finance Management",
+    description:
+      "Join the waitlist for the future of personal finance. AI-powered insights with secure read-only access. Your money stays safe - we never touch your funds.",
+    url: "https://phinmon.com",
+    siteName: "Phinmon",
+    images: [
+      {
+        url: "/success.png",
+        width: 1200,
+        height: 630,
+        alt: "Phinmon - AI-Powered Personal Finance Management",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Phinmon - AI-Powered Personal Finance Management",
+    description:
+      "Join the waitlist for the future of personal finance. AI-powered insights with secure read-only access. Your money stays safe!",
+    images: ["/success.png"],
+    creator: "@phinmonhq",
+    site: "@phinmonhq",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code", // Replace with actual verification code
+  },
+  category: "finance",
+  classification: "Personal Finance Technology",
   icons: {
     icon: [
       {
@@ -36,7 +105,15 @@ export const metadata: Metadata = {
         href: "/p.svg",
       },
     ],
+    apple: [
+      {
+        url: "/p.svg",
+        sizes: "180x180",
+        type: "image/svg+xml",
+      },
+    ],
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -54,12 +131,49 @@ export default function RootLayout({
           type="image/svg"
           sizes="any"
         />
-        <meta property="og:image" content="/success.png" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:alt" content="Phinmon" />
-        <meta name="twitter:image" content="/success.png" />
-        <meta name="twitter:image:type" content="image/png" />
-        <meta property="twitter:image:alt" content="Phinmon" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#6366f1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="format-detection" content="telephone=no" />
+
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              name: "Phinmon",
+              description:
+                "AI-powered personal finance management platform with secure read-only access to your financial data",
+              url: "https://phinmon.com",
+              applicationCategory: "FinanceApplication",
+              operatingSystem: "Web",
+              offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "USD",
+                availability: "https://schema.org/PreOrder",
+              },
+              creator: {
+                "@type": "Organization",
+                name: "Phinmon",
+                url: "https://phinmon.com",
+                sameAs: [
+                  "https://x.com/phinmonhq",
+                  "https://www.linkedin.com/company/phinmon/",
+                ],
+              },
+              featureList: [
+                "AI-powered financial insights",
+                "Secure read-only account access",
+                "Multi-account dashboard",
+                "Spending pattern analysis",
+                "Bank-level security",
+              ],
+            }),
+          }}
+        />
       </head>
       {/* Google Analytics */}
       <GoogleAnalytics
