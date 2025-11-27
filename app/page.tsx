@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -548,9 +549,17 @@ export default function Home() {
             <span>Phinmon</span>
           </div>
           <p className={styles.footerText}>
-            © 2024 Phinmon. All rights reserved. Making money management
-            actually fun, one insight at a time.
+            © {new Date().getFullYear()} Phinmon. All rights reserved. Making
+            money management actually fun, one insight at a time.
           </p>
+          <div className={styles.footerLinks}>
+            <Link href="/privacy" className={styles.footerLink}>
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className={styles.footerLink}>
+              Terms & Conditions
+            </Link>
+          </div>
         </div>
       </footer>
 
